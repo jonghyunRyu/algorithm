@@ -27,61 +27,20 @@
 
 ```text
 algorithm/
-├─ data-structure/
-│  ├─ array/
-│  ├─ string/
-│  ├─ stack/
-│  ├─ queue/
-│  ├─ hashmap/
-│  └─ tree/
-├─ brute-force/
-├─ greedy/
-├─ dfs-bfs/
-├─ dynamic-programming/
-├─ implementation/
+├─ backjoon
+│  ├─ src/
+├─ 백준/
+│    ├─ Bronze/
+│    ├─ Sliver/
+│    ├─ Gold/
+├─ 프로그래머스/
+│    ├─ 0/ 
+│    ├─ 1/
+│    ├─ 2/
 └─ README.md
 ```
 
 > 문제 유형별로 정리하며, 필요에 따라 구조는 유연하게 변경됩니다.
-
----
-
-## ✍️ 문제 풀이 규칙 (Rules)
-
-* **문제 링크 또는 출처 명시**
-* 파일명은 문제 핵심이 드러나도록 작성
-* 가능한 경우 시간복잡도 / 공간복잡도 주석 작성
-* 한 문제당 하나의 파일을 원칙으로 함
-
----
-
-## 🧩 문제 풀이 형식 (Example)
-
-```js
-// 문제: 피보나치 수열
-// 접근 방식: DP + 메모이제이션
-// 시간복잡도: O(n)
-// 공간복잡도: O(n)
-
-const fibo = (n, memo = {}) => {
-  if (n <= 1) return n;
-  if (memo[n]) return memo[n];
-
-  memo[n] = fibo(n - 1, memo) + fibo(n - 2, memo);
-  return memo[n];
-};
-```
-
----
-
-## 📖 학습 포인트 기록
-
-* 처음 접근 방법
-* 막혔던 부분
-* 개선 가능한 코드
-* 배운 개념 및 패턴
-
-> 단순히 정답을 맞히는 것보다 **왜 이렇게 풀었는지**를 중요하게 기록합니다.
 
 ---
 
