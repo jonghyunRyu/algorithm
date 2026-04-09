@@ -1,17 +1,10 @@
 function solution(k, m, score) {
+    let answer = 0;
+    const arr = score.sort((a, b) => b - a);
     
-    if (score.length < m) {
-        return 0;
+    for (let i = m - 1; i < arr.length; i += m) {
+        answer += arr[i] * m; 
     }
-
-    score.sort((a, b) => b - a);
-    const answer = score.reduce((a, v, i) => {
-        if (i % m === m - 1) {
-            return a + v * m;
-        }
-        
-        return a;
-    }, 0);
     
     return answer;
 }
