@@ -1,33 +1,37 @@
 function solution(s) {
-    
-    const circular = s.concat(s);
-    const len = s.length;
     let answer = 0;
     
-    for (let i = 0; i < len; i++) {
-        
-        let arr = [];
-        for (let j = i; j < len + i; j++) {
-            if (arr.length === 0) {
-                arr.push(circular[j]);
-                
-            } else if (arr[arr.length-1] === '(' && circular[j] === ')') {
-                arr.pop();
-                
-            } else if (arr[arr.length-1] === '[' && circular[j] === ']') {
-                arr.pop();
-                
-            } else if (arr[arr.length-1] === '{' && circular[j] === '}') {
-                arr.pop();
-                
+    let stack = [];
+    let strArr = s.split('');
+    
+    for (let i = 0; i < strArr.length; i++) {
+        for (let j = 0; j < strArr.length; j++) {
+            if (stack.length === 0) {
+                stack.push(strArr[j]);
             } else {
-                arr.push(circular[j]);
+                if (stack[0] === ')' || stack[0] === ']' || stack[0] === '}') break;
+                if (stack[stack.length - 1] === '(' && strArr[j] !== ')') {
+                    stack.push(strArr[j]);
+                } else if (stack[stack.length - 1] === '(' && strArr[j] === ')') {
+                    stack.pop();
+                } else if (stack[stack.length - 1] === '[' && strArr[j] !== ']') {
+                    stack.push(strArr[j]);
+                } else if (stack[stack.length - 1] === '[' && strArr[j] === ']') {
+                    stack.pop();
+                } else if (stack[stack.length - 1] === '{' && strArr[j] !== '}') {
+                    stack.push(strArr[j]);
+                } else if (stack[stack.length - 1] === '{' && strArr[j] === '}') {
+                    stack.pop();
+                } else {
+                    stack.push(strArr[j]);
+                }
             }
-        } 
+        }
         
-        if (arr.length === 0) {
-            answer++;
-        } 
+        if (stack.length === 0) answer++;
+        stack = [];
+        const c = strArr.shift();
+        strArr = [...strArr, c];
     }
     
     return answer;
