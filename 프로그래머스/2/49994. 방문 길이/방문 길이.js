@@ -1,48 +1,31 @@
 function solution(dirs) {
-    let visited = [];
-    const chars = ['U', 'D', 'R', 'L'];
-    let location = [0, 0];
     
-    for (let i = 0; i < dirs.length; i++) {
+    const move = {
+        'U': [0, 1],
+        'D': [0, -1],
+        'R': [1, 0],
+        'L': [-1, 0]
+    };
+    
+    let x = 5;
+    let y = 5;
+    const route = new Set();
+    
+    for (const dir of dirs) {
+        let [dx, dy] = move[dir];
+        let nx = x + dx;
+        let ny = y + dy;
         
-        if (dirs[i] === chars[0]) {
-            if (location[1] + 1 > 5) {
-                continue;
-            } else {
-                visited.push([...location, location[0], location[1] + 1].join(''));
-                location = [location[0], location[1] + 1];
-            }
-            
-        } else if (dirs[i] === chars[1]) {
-            
-            if (location[1] - 1 < -5) {
-                continue;
-            } else {
-                visited.push([location[0], location[1] - 1, ...location].join(''));
-                location = [location[0], location[1] - 1];
-            }
-            
-        } else if (dirs[i] === chars[2]) {
-            
-            if (location[0] + 1 > 5) {
-                continue;
-            } else {
-                visited.push([...location, location[0] + 1, location[1]].join(''));
-                location = [location[0] + 1, location[1]];
-            }
-            
+        if (nx < 0 || nx > 10 || ny < 0 || ny > 10) {
+            continue;
         } else {
-            
-            if (location[0] - 1 < -5) {
-                continue;
-            } else {
-                visited.push([location[0] - 1, location[1], ...location].join(''));
-                location = [location[0] - 1, location[1]];
-            }
+            route.add(`${x}${y}${nx}${ny}`);
+            route.add(`${nx}${ny}${x}${y}`);
         }
+        
+        x = nx;
+        y = ny;
     }
     
-    let s = new Set(visited);
-    
-    return s.size;
+    return route.size / 2;
 }
