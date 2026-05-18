@@ -1,29 +1,37 @@
 function solution(want, number, discount) {
+    
     let answer = 0;
-    const cycle = discount.length - 9;
-    for (let i = 0; i < cycle; i++) {
+    let map = setMap(want, number);
+    
+    for (let i = 0; i <= discount.length - 10; i++) {
         
-        let arr = discount.slice(i, i + 10);
-        let flag = true;
-        for (let j = 0; j < want.length; j++) {
-            let num = 0;
-            for (let k = 0; k < arr.length; k++) {
-                if (arr[k] === want[j]) {
-                    num++;
-                }
+        map = setMap(want, number);
+        for (let j = i; j < i + 10; j++) {
+            if (map.get(discount[j]) === undefined) break;
+            else {
+                map.set(discount[j], map.get(discount[j]) - 1);
             }
-            
-            if (num < number[j]) {
+        }
+        
+        let flag = true;
+        for (const [key, value] of map) {
+            if (value !== 0) {
                 flag = false;
                 break;
             }
         }
         
-        if (flag) {
-            answer++;
-        }
-        
+        if (flag) answer++;
     }
     
     return answer;
+}
+
+function setMap(want, number) {
+    const map = new Map();
+    for (let i = 0; i < want.length; i++) {
+        map.set(want[i], number[i]);
+    }
+    
+    return map;
 }
