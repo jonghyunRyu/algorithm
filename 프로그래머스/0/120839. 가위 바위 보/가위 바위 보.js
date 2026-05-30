@@ -5,5 +5,6 @@ function solution(rsp) {
         '5' : 2,
     }
     
-    return rsp.split('').map(v => dict[v]).join('');
+    // return rsp.split('').map(v => dict[v]).join('');
+    return [...rsp].map(v => dict[v]).join('');
 }
