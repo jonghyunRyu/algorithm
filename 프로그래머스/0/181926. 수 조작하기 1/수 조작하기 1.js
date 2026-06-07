@@ -6,5 +6,5 @@ function solution(n, control) {
         'a' : -10
     };
     
-    return n + [...control].reduce((a, v) => a + con[v], 0);
+    return [...control].reduce((a, v) => a + con[v], n);
 }
